@@ -17,15 +17,15 @@ test('nameIsValid : больше двух символов = true', () => {
 
 
 
-test('number', () => {
-    expect(fullTrim).toBeDefined()
+test('удаление пробела из строки', () => {
+    expect(fullTrim('Kos tya')) .toBe('Kostya');
 })
-test('проверка ошибки при написании без пробела', () => {
-    expect(fullTrim('писькасасать')).toBeDefined()
+test('пробел не удалится', () => {
+    expect(fullTrim('удалипробел')).toBe('удалипробел')
 })
 
-test('проверка удаление пробела из строки', () => {
-    expect(fullTrim('писька сасать')).toBe('писькасасать')
+test('проверка удаления пробела из строки', () => {
+    expect(fullTrim('Ник ита')).toBe('Никита')
 })
 
 
