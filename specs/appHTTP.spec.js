@@ -1,9 +1,9 @@
 /*import fetch from "node-fetch";
 import {discribe, expect, test} from '@jest/globals';*/
 
-// создание пользователя с ошибкой логин уже используется 
+// создание пользователя с ошибкой логин уже используется ++
 
-test.skip ( 'add user', async() => {
+test( 'add user', async() => {
     const response = await fetch ('https://bookstore.demoqa.com/Account/v1/User', {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json' },
@@ -17,19 +17,19 @@ test.skip ( 'add user', async() => {
     
     const data = await response.json();
 console.log(data);
-console.log(data.status);    
+expect(data.message).toEqual('User exists!');
     });
 
 
-    // создание пользователя с ошибкой пароль не подходит 
+    // создание пользователя с ошибкой пароль не подходит ++
 
-    test.skip( 'add user', async() => {
+    test( 'add user', async() => {
         const response = await fetch ('https://bookstore.demoqa.com/Account/v1/User', {
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
             body: JSON.stringify({
           
-                userName: 'vasya',
+                userName: 'vasya2',
                 password: 'Vasya323',
             })
         
@@ -37,18 +37,19 @@ console.log(data.status);
         
         const data = await response.json();
     console.log(data);
-    console.log(data.status);    
+    expect(response.status).toBe(400);
+    
         });
 
-        // создание пользователя успешно 
+        // создание пользователя успешно ++
 
-        test.skip( 'add user', async() => {
+        test( 'add user', async() => {
             const response = await fetch ('https://bookstore.demoqa.com/Account/v1/User', {
                 method: 'POST',
                 headers: { 'Content-Type' : 'application/json' },
                 body: JSON.stringify({
               
-                    userName: 'vasya1',
+                    userName: 'vasya9',
                     password: 'Vasya323#',
                 })
             
@@ -56,10 +57,10 @@ console.log(data.status);
             
             const data = await response.json();
         console.log(data);
-        console.log(data.status);    
+        expect(response.status).toBe(201); 
             });
 
-            // генерация токена с ошибкой 
+            // генерация токена с ошибкой ++
             test ( 'generation token error ', async() => {
                 const response = await fetch ('https://bookstore.demoqa.com/Account/v1/GenerateToken', {
                     method: 'POST',
@@ -74,10 +75,10 @@ console.log(data.status);
                 
                 const data = await response.json();
             console.log(data);
-            console.log(data.status);    
+            expect(response.status).toBe(200);    
                 });
 
-                // генерация токена успешно 
+                // генерация токена успешно ++
 
                 test ( 'generation token error ', async() => {
                     const response = await fetch ('https://bookstore.demoqa.com/Account/v1/GenerateToken ', {
@@ -94,6 +95,6 @@ console.log(data.status);
                     
                     const data = await response.json();
                 console.log(data);
-                console.log(data.status);    
+                expect(response.status).toBe(200);    
                     });
     
